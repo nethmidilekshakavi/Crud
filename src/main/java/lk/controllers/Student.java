@@ -135,10 +135,5 @@ public class Student {
 
     }
 
-    @Override
-    void initialize() throws SQLException {
-        loadallvalues();
-        setValues();
-    }
 
 }
