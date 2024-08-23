@@ -1,4 +1,4 @@
-package controllers;
+package lk.controllers;
 
 import javafx.event.ActionEvent;
 

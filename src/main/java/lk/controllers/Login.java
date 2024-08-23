@@ -1,4 +1,4 @@
-package controllers;
+package lk.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +31,7 @@ public class Login {
 
         if (UN.getText().equals(username) && PW.getText().equals(password)) {
 
-            Parent parent = FXMLLoader.load(getClass().getResource("/controllers/view/dashboard.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.setScene(scene);

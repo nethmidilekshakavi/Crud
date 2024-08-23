@@ -1,6 +1,4 @@
-package controllers.dbConnection;
-
-import javafx.beans.property.Property;
+package lk.dbConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +9,7 @@ public class DBConnection {
 
     private static DBConnection dbConnection;
 
-    final private static String URL ="jdbc:mysql://localhost:3306/MyProject" ;
+    final private static String URL ="jdbc:mysql://localhost:3306/myproject" ;
 
     private final static Properties props = new Properties();
 
