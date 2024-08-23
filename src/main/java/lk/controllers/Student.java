@@ -4,31 +4,35 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.Repo.StudentRepo;
 import lk.model.StudentModel;
 import lk.model.TM.studentTM;
+import lombok.SneakyThrows;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Student {
+public class Student implements Initializable {
 
     @FXML
     private TextField addresstxt;
 
     @FXML
-    private TableColumn<?, ?> coladdress;
+    private TableColumn<studentTM, String> coladdress;
 
     @FXML
-    private TableColumn<?, ?> colid;
+    private TableColumn<studentTM,Integer> colid;
 
     @FXML
-    private TableColumn<?, ?> colname;
+    private TableColumn<studentTM, String> colname;
 
     @FXML
-    private TableColumn<?, ?> coltele;
+    private TableColumn<studentTM, Integer> coltele;
 
     @FXML
     private Button delete;
@@ -136,4 +140,12 @@ public class Student {
     }
 
 
+
+
+    @SneakyThrows
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setValues();
+        loadallvalues();
+    }
 }

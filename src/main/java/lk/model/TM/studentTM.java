@@ -12,5 +12,5 @@ public class studentTM {
     private int SID;
     private String NAME;
     private String ADDRESS;
-    private int PHONE;
+    private int phone;
 }
