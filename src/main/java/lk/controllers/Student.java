@@ -2,10 +2,7 @@ package lk.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import lk.Repo.StudentRepo;
 import lk.model.StudentModel;
 
@@ -51,7 +48,16 @@ public class Student {
 
         int id = Integer.parseInt(idtxt.getText());
 
-        StudentRepo.deleteStudent(String.valueOf(id));
+       boolean d =  StudentRepo.deleteStudent(String.valueOf(id));
+
+       if (d){
+
+           new Alert(Alert.AlertType.CONFIRMATION,"Student Deleted").show();
+       }
+       else {
+           new Alert(Alert.AlertType.ERROR,"Student not deeted").show();
+       }
+
     }
 
     @FXML
@@ -65,7 +71,16 @@ public class Student {
         StudentModel studentModel = new StudentModel(id,nam,address,tele);
         boolean s = StudentRepo.saveStudent(studentModel);
 
-    }
+        if (s){
+            new Alert(Alert.AlertType.CONFIRMATION,"Customer Save Success").show();
+        }
+        else {
+            new Alert(Alert.AlertType.ERROR,"Customer not save").show();
+
+        }
+        }
+
+
 
     @FXML
     void studentupdate(ActionEvent event) {
@@ -77,6 +92,15 @@ public class Student {
 
         StudentModel studentModel = new StudentModel(id,name,address,phone);
         boolean u = StudentRepo.updateStudent(studentModel);
+
+        if (u){
+
+            new Alert(Alert.AlertType.CONFIRMATION,"Student Updated").show();
+        }
+        else {
+            new Alert(Alert.AlertType.ERROR,"Student not Updated").show();
+        }
+
 
     }
 
