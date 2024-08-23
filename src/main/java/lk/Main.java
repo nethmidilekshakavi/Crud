@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"));
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.centerOnScreen();
