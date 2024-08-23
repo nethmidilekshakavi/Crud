@@ -1,12 +1,17 @@
 package lk.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.Repo.StudentRepo;
 import lk.model.StudentModel;
+import lk.model.TM.studentTM;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Student {
 
@@ -35,7 +40,7 @@ public class Student {
     private TextField nametxtx;
 
     @FXML
-    private TableView<?> tableStudent;
+    private TableView<studentTM> tableStudent;
 
     @FXML
     private TextField teletxt;
@@ -55,7 +60,7 @@ public class Student {
            new Alert(Alert.AlertType.CONFIRMATION,"Student Deleted").show();
        }
        else {
-           new Alert(Alert.AlertType.ERROR,"Student not deeted").show();
+           new Alert(Alert.AlertType.ERROR,"Student not Deleted").show();
        }
 
     }
@@ -102,6 +107,38 @@ public class Student {
         }
 
 
+    }
+
+    public void loadallvalues() throws SQLException {
+
+        ArrayList<StudentModel> allstudent = StudentRepo.getAll();
+        ObservableList<studentTM>observableList= FXCollections.observableArrayList();
+
+        for (int i = 0; i<allstudent.size(); i++){
+           /* String id = String.valueOf(allstudent.get(i).getSid());
+            String tele = String.valueOf(allstudent.get(i).getPhone());*/
+
+            studentTM studentTM = new studentTM(allstudent.get(i).getSid(),allstudent.get(i).getName(),allstudent.get(i).getAddress(),allstudent.get(i).getPhone());
+            observableList.add(studentTM);
+            tableStudent.setItems(observableList);
+
+        }
+
+
+    }
+
+    public void setValues(){
+        colid.setCellValueFactory(new PropertyValueFactory<>("SID"));
+        colname.setCellValueFactory(new PropertyValueFactory<>("NAME"));
+        coladdress.setCellValueFactory(new PropertyValueFactory<>("ADDRESS"));
+        coltele.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
+    }
+
+    @Override
+    void initialize() throws SQLException {
+        loadallvalues();
+        setValues();
     }
 
 }
