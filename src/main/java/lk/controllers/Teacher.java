@@ -1,30 +1,37 @@
 package lk.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import lk.Repo.StudentRepo;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.Repo.TeacherRepo;
+import lk.model.TM.TeacherTM;
 import lk.model.TeacherModel;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Teacher {
+public class Teacher implements Initializable {
 
     @FXML
     private TextField addresstxt;
 
     @FXML
-    private TableColumn<?, ?> coladdress;
+    private TableColumn<?, String> coladdress;
 
     @FXML
-    private TableColumn<?, ?> colid;
+    private TableColumn<?, String> colid;
 
     @FXML
-    private TableColumn<?, ?> colname;
+    private TableColumn<?, String> colname;
 
     @FXML
-    private TableColumn<?, ?> coltele;
+    private TableColumn<?, String> coltele;
 
     @FXML
     private Button delete;
@@ -36,7 +43,7 @@ public class Teacher {
     private TextField nametxtx;
 
     @FXML
-    private TableView<?> tableStudent;
+    private TableView<TeacherTM> tableStudent;
 
     @FXML
     private TextField teletxt;
@@ -100,4 +107,34 @@ public class Teacher {
 
     }
 
+    public void loadValues() throws SQLException {
+
+        ArrayList<TeacherModel> teacherModels = TeacherRepo.getAll();
+
+        ObservableList<TeacherTM> observableList = FXCollections.observableArrayList();
+
+        for (int i = 0; i < teacherModels.size(); i++) {
+            TeacherTM all = new TeacherTM(teacherModels.get(i).getTid(), teacherModels.get(i).getName(), teacherModels.get(i).getAddress(), teacherModels.get(i).getPhone());
+            observableList.add(all);
+            tableStudent.setItems(observableList);
+        }
+    }
+
+    public void setValues(){
+        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colname.setCellValueFactory(new PropertyValueFactory<>("name"));
+        coladdress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        coltele.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setValues();
+        try {
+            loadValues();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
