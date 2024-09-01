@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Student implements Initializable {
+public class StudentController implements Initializable {
 
     @FXML
     private TextField addresstxt;
