@@ -5,4 +5,5 @@ import lk.Entity.Student;
 
 public interface StudentDao extends CrudDao<Student> {
 
+
 }

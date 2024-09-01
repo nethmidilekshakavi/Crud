@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.DAO.StudentDao;
+import lk.DaoFactory;
+import lk.Entity.Student;
 import lk.Repo.StudentRepo;
 import lk.model.StudentModel;
 import lk.model.TM.studentTM;
@@ -18,6 +21,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class StudentController implements Initializable {
+
+    StudentDao studentDao = (StudentDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.STUDENT);
 
     @FXML
     private TextField addresstxt;
@@ -57,9 +62,16 @@ public class StudentController implements Initializable {
 
         int id = Integer.parseInt(idtxt.getText());
 
-       boolean d =  StudentRepo.deleteStudent(String.valueOf(id));
+        boolean d = false;
+        try {
+            d = studentDao.delete(String.valueOf(id));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-       if (d){
+        if (d){
 
            new Alert(Alert.AlertType.CONFIRMATION,"Student Deleted").show();
        }
@@ -70,15 +82,15 @@ public class StudentController implements Initializable {
     }
 
     @FXML
-    void studentsave(ActionEvent event) throws SQLException {
+    void studentsave(ActionEvent event) throws SQLException, ClassNotFoundException {
 
         int id = Integer.parseInt(idtxt.getText());
         String nam = nametxtx.getText();
         String address = addresstxt.getText();
         int tele = Integer.parseInt(teletxt.getText());
 
-        StudentModel studentModel = new StudentModel(id,nam,address,tele);
-        boolean s = StudentRepo.saveStudent(studentModel);
+        Student studentModel = new Student(id,nam,address,tele);
+        boolean s = studentDao.save(studentModel);
 
         if (s){
             new Alert(Alert.AlertType.CONFIRMATION,"Customer Save Success").show();

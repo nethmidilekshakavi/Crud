@@ -13,14 +13,13 @@ public class DaoFactory {
     }
 
     public enum DAOTypes {
-        CUSTOMER,ITEM,ORDER,ORDER_DETAILS,QUERY_DAO,MEAL,EMPLOYEE,INGREDIENTS,SUPPLIER
+        STUDENT,TEACHER
     }
 
     public SuperDao getDAO(DAOTypes types){
         switch (types) {
-            case CUSTOMER:
+            case STUDENT  :
                 return new StudentDaoImpl();
-            case MEAL:
 
         }
         return null;

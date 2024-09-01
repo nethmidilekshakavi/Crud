@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class StudentRepo {
 
-    public static boolean saveStudent(StudentModel studentModel) throws SQLException {
+   /* public static boolean saveStudent(StudentModel studentModel) throws SQLException {
 
         try {
 
@@ -30,7 +30,7 @@ public class StudentRepo {
            e.fillInStackTrace();
         }
         return false;
-    }
+    }*/
 
     public static boolean updateStudent(StudentModel studentModel){
 
@@ -54,7 +54,7 @@ public class StudentRepo {
     }
 
 
-    public static boolean deleteStudent(String id){
+   /* public static boolean deleteStudent(String id){
 
         try{
 
@@ -73,7 +73,7 @@ public class StudentRepo {
 
         return false;
     }
-
+*/
     public static ArrayList<StudentModel> getAll() throws SQLException {
 
         ArrayList<StudentModel> studentModel = new ArrayList<>();
