@@ -1,4 +1,8 @@
 package lk.DAO;
 
-public interface StudentDao {
+import lk.CrudDao;
+import lk.Entity.Student;
+
+public interface StudentDao extends CrudDao<Student> {
+
 }
