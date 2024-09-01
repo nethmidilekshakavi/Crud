@@ -74,7 +74,7 @@ public class StudentRepo {
         return false;
     }
 */
-    public static ArrayList<StudentModel> getAll() throws SQLException {
+   /* public static ArrayList<StudentModel> getAll() throws SQLException {
 
         ArrayList<StudentModel> studentModel = new ArrayList<>();
 
@@ -97,6 +97,6 @@ public class StudentRepo {
         }
 
         return studentModel;
-    }
+    }*/
 
 }

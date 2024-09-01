@@ -139,7 +139,12 @@ public class StudentController implements Initializable {
 
     public void loadallvalues() throws SQLException {
 
-        ArrayList<StudentModel> allstudent = StudentRepo.getAll();
+        ArrayList<Student> allstudent = null;
+        try {
+            allstudent = studentDao.getAll();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         ObservableList<studentTM>observableList= FXCollections.observableArrayList();
 
         for (int i = 0; i<allstudent.size(); i++){

@@ -4,6 +4,7 @@ import lk.DaoFactory;
 import lk.Entity.Student;
 import lk.SQLUtil;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -11,7 +12,18 @@ public class StudentDaoImpl implements StudentDao{
 
     @Override
     public ArrayList<Student> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+
+        ArrayList<Student> all = new ArrayList<>();
+
+        ResultSet resultSet = SQLUtil.execute("select * from student");
+
+        while (resultSet.next()){
+
+            Student student = new Student(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4));
+
+            all.add(student);
+        }
+        return all;
     }
 
     @Override
