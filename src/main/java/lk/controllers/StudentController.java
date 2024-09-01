@@ -82,21 +82,26 @@ public class StudentController implements Initializable {
     }
 
     @FXML
-    void studentsave(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void studentsave(ActionEvent event) throws SQLException{
 
         int id = Integer.parseInt(idtxt.getText());
         String nam = nametxtx.getText();
         String address = addresstxt.getText();
         int tele = Integer.parseInt(teletxt.getText());
 
-        Student studentModel = new Student(id,nam,address,tele);
-        boolean s = studentDao.save(studentModel);
+        Student student = new Student(id,nam,address,tele);
+        boolean s = false;
+        try {
+            s = studentDao.save(student);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         if (s){
-            new Alert(Alert.AlertType.CONFIRMATION,"Customer Save Success").show();
+            new Alert(Alert.AlertType.CONFIRMATION,"Student Save Success").show();
         }
         else {
-            new Alert(Alert.AlertType.ERROR,"Customer not save").show();
+            new Alert(Alert.AlertType.ERROR,"Student not save").show();
 
         }
         }
@@ -111,8 +116,15 @@ public class StudentController implements Initializable {
         String address = addresstxt.getText();
         int phone = Integer.parseInt(teletxt.getText());
 
-        StudentModel studentModel = new StudentModel(id,name,address,phone);
-        boolean u = StudentRepo.updateStudent(studentModel);
+        Student student = new Student(id,name,address,phone);
+        boolean u = false;
+        try {
+            u = studentDao.update(student);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         if (u){
 

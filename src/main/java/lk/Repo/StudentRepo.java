@@ -32,7 +32,7 @@ public class StudentRepo {
         return false;
     }*/
 
-    public static boolean updateStudent(StudentModel studentModel){
+   /* public static boolean updateStudent(StudentModel studentModel){
 
         try{
 
@@ -51,7 +51,7 @@ public class StudentRepo {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
 
    /* public static boolean deleteStudent(String id){

@@ -17,12 +17,12 @@ public class StudentDaoImpl implements StudentDao{
     @Override
     public boolean save(Student entity) throws SQLException, ClassNotFoundException {
 
-        return SQLUtil.execute("INSERT INTO student VALUES (?,?,?,?)",entity.getSid(),entity.getName(),entity.getAddress(),entity.getAddress());
+        return SQLUtil.execute("INSERT INTO student VALUES (?,?,?,?)",entity.getSid(),entity.getName(),entity.getAddress(),entity.getPhone());
     }
 
     @Override
     public boolean update(Student entity) throws SQLException, ClassNotFoundException {
-        return false;
+        return SQLUtil.execute("UPDATE student SET NAME = ?, ADDRESS = ?, phone = ? WHERE SID = ?",entity.getName(),entity.getAddress(),entity.getPhone(),entity.getSid());
     }
 
     @Override
